@@ -1,63 +1,58 @@
-import React from 'react';
-import MaterialTable from 'material-table';
+import React, { Component } from "react";
+import MaterialTable from "material-table";
 
-export default function TableView() {
-  const [state, setState] = React.useState({
-    columns: [
-      { title: 'Name', field: 'name' },
-      { title: 'Surname', field: 'surname' },
-      { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-      {
-        title: 'Birth Place',
-        field: 'birthCity',
-        lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-      },
-    ],
-    data: [
-      { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-      {
-        name: 'Zerya Betül',
-        surname: 'Baran',
-        birthYear: 2017,
-        birthCity: 34,
-      },
-    ],
-  });
+const COLUMNS = [
+  { title: "Date", field: "date", type: "date" },
+  { title: "Measurement", field: "weight", type: "numeric" },
+  { title: "Units", field: "units" },
+  { title: "Positive", field: "positive" },
+  { title: "Negative", field: "negative" }
+];
 
-  return (
-    <MaterialTable
-      title="Editable Example"
-      columns={state.columns}
-      data={state.data}
-      editable={{
-        onRowAdd: newData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              const data = [...state.data];
-              data.push(newData);
-              setState({ ...state, data });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              const data = [...state.data];
-              data[data.indexOf(oldData)] = newData;
-              setState({ ...state, data });
-            }, 600);
-          }),
-        onRowDelete: oldData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              const data = [...state.data];
-              data.splice(data.indexOf(oldData), 1);
-              setState({ ...state, data });
-            }, 600);
-          }),
-      }}
-    />
-  );
+const measurementsTest = [
+  { id: 112, date: "12-01-1993", weight: 100 },
+  { id: 104, date: "12-01-2012", weight: 120 },
+  { id: 123, date: "14-01-1993", weight: 150 },
+  { id: 102, date: "15-01-1993", weight: 94 }
+];
+
+class TableView extends Component {
+  state = { columns: COLUMNS, data: measurementsTest };
+
+  render() {
+    return (
+      <MaterialTable
+        title="All Measurments"
+        columns={this.state.columns}
+        data={Object.keys(this.props.measurements).map(key => {
+          return { id: key, ...this.props.measurements[key] };
+        })}
+        editable={{
+          onRowAdd: newData =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                this.props.addMeasurement(newData);
+              }, 600);
+            }),
+          onRowUpdate: (newData, oldData) =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                this.props.updateMeasurement(oldData.id, newData);
+              }, 600);
+            }),
+          onRowDelete: oldData =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                this.props.deleteMeasurement(oldData.id);
+              }, 600);
+            })
+        }}
+      />
+    );
+  }
 }
+
+export default TableView;

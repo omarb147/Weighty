@@ -6,13 +6,18 @@
     "@material-ui/core": "^4.3.2",
     "chart.js": "^2.8.0",
     "chartjs": "^0.3.24",
+    "date-fns": "^2.0.0",
+    "eslint-plugin-flowtype": "^4.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
     "firebase": "^6.3.5",
     "material-table": "^1.50.0",
     "react": "^16.9.0",
     "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1",
+    "react-scripts": "^3.1.1",
     "semantic-ui-react": "^0.87.3"
   },
   "scripts": {
@@ -36,10 +41,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "eslint": "^6.1.0",
-    "eslint-loader": "^2.2.1",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^1.7.0"
-  }
+  "devDependencies": {}
 }
