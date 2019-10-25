@@ -3,10 +3,10 @@
 
 ## ScreenShots
 Main app view
-<img src="WeightyMain.png width=100%/>
+<img src="WeightyMain.png" width="100%"/>
           
 Multifunctional Tableview - to view, search and edit all weight entries
-<img src="WeightyTable.png width=100%/>
+<img src="WeightyTable.png" width="100%"/>
           
  
 ## Functionality
